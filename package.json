@@ -3,7 +3,8 @@
   "description": "Solutions to Rosalind problems in JavaScript",
   "author": "Øyvind Ingvaldsen <oyvind.ingvaldsen@gmail.com>",
   "dependencies": {
-    "bignum": "~0.6.1"
+    "bignum": "~0.6.1",
+    "clone": "~0.1.10"
   }
 }
 

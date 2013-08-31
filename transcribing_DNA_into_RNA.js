@@ -2,6 +2,8 @@
  * Rosalind Challenge - Transcribing DNA into RNA
  * by Øyvind Ingvaldsen <oyvind.Ingvaldsen@gmail.com>
  *
+ * http://rosalind.info/problems/rna/
+ *
  * Problem:
  *  Given - A DNA string <t> having length at most 1000 nt.
  *  Return - The transcribed RNA string of <t>.

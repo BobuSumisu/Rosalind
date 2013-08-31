@@ -1,6 +1,8 @@
 /**
  * Rosalind Challenge - Complementing a Strand of DNA
  *
+ * http://rosalind.info/problems/revc/
+ *
  * Problem:
  *  Given - A DNA string <s> of length at most 1000 bp.
  *  Return - The reverse complement <s^c> of <s>.

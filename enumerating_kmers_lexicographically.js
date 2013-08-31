@@ -2,7 +2,7 @@
  * Rosalind Problem - Enumerating k-mers Lexicographically
  * by Øyvind Ingvaldsen <oyvind.ingvaldsen@gmail.com>
  *
- * [IN PROGRESS]
+ * http://rosalind.info/problems/lexf/
  *
  * Problem:
  *  Given - A collection of at most 10 symbols defining an ordered alphabet, and a positive integer n <= 10
@@ -14,23 +14,28 @@
 
 var fs = require('fs');
 
-function form(alphabet, n) {
-  var strings = [];
+function combine(alphabet, n, word, list) {
+  word = word || '';
+  list = list || [];
 
-  
-  for(var i = 0; i < alphabet.length; i++) {
-    for(var k = 0; k < alphabet.length; k++) {
-      console.log(alphabet[i] + alphabet[k]); 
+  if(n === 0) {
+    list.push(word);
+  }
+  else {
+    for(var i = 0; i < alphabet.length; i++) {
+      combine(alphabet, n - 1, word + alphabet[i], list);
     }
   }
 
-  return strings;
+  return list;
 }
 
 fs.readFile('test.txt', 'utf-8', function(err, data) {
   var alphabet = data.split('\n')[0].split(' ');
   var n = parseInt(data.split('\n')[1]);
 
-  var strings = form(alphabet);
-  console.log(strings);
+  combine(alphabet, n).forEach(function(c) {
+    console.log(c);
+  });
+
 });

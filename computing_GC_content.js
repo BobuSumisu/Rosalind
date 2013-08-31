@@ -2,6 +2,8 @@
  * Rosalind Problem - Computing GC Content
  * by Øyvind Ingvaldsen <oyvind.ingvaldsen@gmail.com>
  *
+ * http://rosalind.info/problems/gc/
+ *
  * Problem:
  *  Given - At most 10 DNA strings in FASTA format (of length at most 1kbp each).
  *  Return - The ID of the string having the highest GC-content, followed by the GC-content of that string (+- 0.001).

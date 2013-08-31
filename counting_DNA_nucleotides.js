@@ -2,6 +2,8 @@
  * Rosalind Challenge - Counting DNA Nucleotides
  * by Øyvind Ingvaldsen <oyvind.ingvaldsen@gmail.com>
  *
+ * http://rosalind.info/problems/dna/
+ *
  * Problem:
  *  Given - A DNA strint <s> of length at most 1000 nt.
  *  Return - Four integers (separated by spaces) counting the respective number of times the symbols 'A', 'C', 'G' and 'T' occurs in <s>.

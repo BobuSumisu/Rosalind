@@ -2,6 +2,8 @@
  * Rosalind Problem - Counting Point Mutations
  * by Øyvind Ingvaldsen <oyvind.ingvaldsen@gmail.com>
  *
+ * http://rosalind.info/problems/hamm/
+ *
  * Problem:
  *  Given - Two DNA strings s and t of equal length (not exceeding 1kbp).
  *  Return - The Hamming distance dH(s,t).
