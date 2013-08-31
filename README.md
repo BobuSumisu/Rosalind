@@ -1,4 +1,4 @@
-Rosalind Problems in JavaScript (Node)
-======================================
+Rosalind Problems 
+=================
 
-http://rosalind.info/
+My solutions to [Rosalind problems](http://rosalind.info/) in JavaScript (Node).
