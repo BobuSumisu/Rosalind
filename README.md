@@ -13,5 +13,6 @@ I have yet to stumble upon any real problems with language itself. Scripts run f
 One thing to note is that the JavaScript `Number` type represent numbers as doubleprecision 64-bit values. The largest exact integer value is therefore `2^53`. 
 I have used the [Bignum](https://github.com/justmoon/node-bignum) Node.js module in cases where larger integers were needed. 
 
+Some sort of object-cloning (both shallow and deep) could also be nice to have (thanks [node-clone](https://github.com/pvorb/node-clone)).
 
 
