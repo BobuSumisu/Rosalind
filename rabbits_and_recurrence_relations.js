@@ -15,19 +15,29 @@
  */
 
 var fs = require('fs');
+var bignum = require('bignum');
 
 function rabbitPairs(months, pairsProduced) {
   if(months === 0) {
     return 0;
   }
 
-  var pairs = [1, 1];
+  var pairs = [];
+  pairs[0] = bignum('1');
+  pairs[1] = bignum('1');
+
   for(var i = 2; i < months; i++) {
-    pairs[i] = pairs[i - 1] + pairs[i - 2] * pairsProduced;
+    pairs[i] = bignum.add(pairs[i - 1], bignum.mul(pairs[i - 2], bignum(pairsProduced)));
   }
 
-  return pairs[months - 1];
+  return pairs[months - 1].toString();
 }
+
+/** Testing
+for(var i = 0; i < 20; i++) {
+  console.log(i + ': ' + rabbitPairs(i, 3));
+}
+*/
 
 fs.readFile('test.txt', 'utf-8', function(err, data) {
   var months = data.split(' ')[0];
