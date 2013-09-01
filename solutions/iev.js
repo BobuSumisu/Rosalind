@@ -15,11 +15,29 @@
  *  Return - The expected number of offspring displaying the dominant phenotype in the next generation, under the assumption that every couple has exactly two offspring.
  *
  * Terms:
+ *  Expected value - The average case of a random variable over time.
+ *  Uniformed random variable - A random variable in which equally spaced outcome have the same probability.
  */
 
 var timing = require('../util/timing');
 var fs = require('fs');
 
 var data = fs.readFileSync('../datasets/rosalind_iev.txt', 'utf-8');
+var dataSet = data.trim().split(' ');
 
+var expectedOutcomes = [
+  (2 + 2) / 2,
+  (2 + 2) / 2,
+  (2 + 2) / 2,
+  (1 + 2) / 2,
+  (1 + 1) / 2,
+  (0 + 0) / 2
+];
+
+var totalExpectedOutcomes = 0;
+dataSet.forEach(function(x, i) {
+  totalExpectedOutcomes += (expectedOutcomes[i] * x);
+});
+
+console.log(totalExpectedOutcomes);
 timing.printInfo();
