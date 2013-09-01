@@ -1,6 +1,10 @@
 # Rosalind Problems 
 
-My solutions to [Rosalind problems](http://rosalind.info/) in JavaScript (Node.js). 
+[My](http://rosalind.info/users/BobuSumisu/) solutions to [Rosalind problems](http://rosalind.info/) in JavaScript (Node.js). 
+
+## Status
+
+`19 / 128` solved (`0.15`).
 
 ## Why JavaScript?
 
