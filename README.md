@@ -2,10 +2,6 @@
 
 [My](http://rosalind.info/users/BobuSumisu/) solutions to [Rosalind problems](http://rosalind.info/) in JavaScript (Node.js). 
 
-## Status
-
-`19 / 128`
-
 ## Why JavaScript?
 
 Because Python is so 1999. And I wanted to learn more about "vanilla" JavaScript and the Node.js ecosystem.
