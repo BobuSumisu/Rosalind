@@ -14,20 +14,20 @@
  *  Alu repeat - A repeat of about 300 base pairs that occurs a million time on the human genome.
  */
 
+var timing = require('../util/timing');
 var fs = require('fs');
 
-fs.readFile('test.txt', 'utf-8', function(err, data) {
-  var s = data.split('\n')[0];
-  var t = data.split('\n')[1];
+var data = fs.readFileSync('../datasets/rosalind_subs.txt', 'utf-8');
+var s = data.split('\n')[0];
+var t = data.split('\n')[1];
 
-  var indices = [];
+var indices = [];
 
-  for(var i = 0; i < s.length - t.length; i++) {
-    if(s.slice(i, i + t.length) === t) {
-      indices.push(i + 1);
-    }
+for(var i = 0; i < s.length - t.length; i++) {
+  if(s.slice(i, i + t.length) === t) {
+    indices.push(i + 1);
   }
+}
 
-  console.log(indices.join(' '));
-});
-
+console.log(indices.join(' '));
+timing.printInfo();

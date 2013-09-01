@@ -35,13 +35,14 @@
  *  Genome - The collection of all of an organism's DNA taken from all its chromosomes.
  */
 
+var timing = require('../util/timing');
 var fs = require('fs');
 
-fs.readFile('rosalind_dna.txt', 'utf-8', function(err, dnaString) {
-  var adenineCount = dnaString.match(/A/g).length;
-  var cytosineCount = dnaString.match(/C/g).length;
-  var guanineCount = dnaString.match(/G/g).length;
-  var thymineCount = dnaString.match(/T/g).length;
-  console.log(adenineCount + ' ' + cytosineCount + ' ' + guanineCount + ' ' + thymineCount);  
-});
+var dnaString = fs.readFileSync('../datasets/rosalind_dna.txt', 'utf-8');
+var adenineCount = dnaString.match(/A/g).length;
+var cytosineCount = dnaString.match(/C/g).length;
+var guanineCount = dnaString.match(/G/g).length;
+var thymineCount = dnaString.match(/T/g).length;
+console.log(adenineCount + ' ' + cytosineCount + ' ' + guanineCount + ' ' + thymineCount);  
 
+timing.printInfo();

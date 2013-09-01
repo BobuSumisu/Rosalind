@@ -16,19 +16,20 @@
  *  Hamming distance - The minimum number of symbol substitutions required to change one string into another of equal length.
  */
 
+var timing = require('../util/timing');
 var fs = require('fs');
 
-fs.readFile('test.txt', 'utf-8', function(err, data) {
-  var s = data.split('\n')[0];
-  var t = data.split('\n')[1];
+var data = fs.readFileSync('../datasets/rosalind_hamm.txt', 'utf-8');
+var s = data.split('\n')[0];
+var t = data.split('\n')[1];
 
-  var hammingDistance = 0;
+var hammingDistance = 0;
 
-  for(var i = 0; i < s.length; i++) {
-    if(s[i] !== t[i]) {
-      hammingDistance += 1;
-    }
+for(var i = 0; i < s.length; i++) {
+  if(s[i] !== t[i]) {
+    hammingDistance += 1;
   }
+}
 
-  console.log(hammingDistance);
-});
+console.log(hammingDistance);
+timing.printInfo();

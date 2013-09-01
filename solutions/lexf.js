@@ -12,6 +12,7 @@
  *  Lexicographic order - A "dictionary" ordering of strings constructed from the same ordered alphabet.
  */
 
+var timing = require('../util/timing');
 var fs = require('fs');
 
 function combine(alphabet, n, word, list) {
@@ -30,12 +31,12 @@ function combine(alphabet, n, word, list) {
   return list;
 }
 
-fs.readFile('test.txt', 'utf-8', function(err, data) {
-  var alphabet = data.split('\n')[0].split(' ');
-  var n = parseInt(data.split('\n')[1]);
+var data = fs.readFileSync('../datasets/rosalind_lexf.txt', 'utf-8');
+var alphabet = data.split('\n')[0].split(' ');
+var n = parseInt(data.split('\n')[1]);
 
-  combine(alphabet, n).forEach(function(c) {
-    console.log(c);
-  });
-
+combine(alphabet, n).forEach(function(c) {
+  console.log(c);
 });
+
+timing.printInfo();

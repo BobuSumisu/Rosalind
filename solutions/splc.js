@@ -20,30 +20,32 @@
  *  Coding region - The collection of a gene's exons.
  */
 
+var timing = require('../util/timing');
 var fs = require('fs');
-var parseFASTA = require('./util/parseFASTA');
-var rnaCodonTable = require('./util/rnaCodonTable');
+var parseFASTA = require('../util/parseFASTA');
+var rnaCodonTable = require('../util/rnaCodonTable');
 
-fs.readFile('test.txt', 'utf-8', function(err, data) {
-  var strings = parseFASTA(data);
-  var s = strings[0].data;
+var data = fs.readFileSync('../datasets/rosalind_splc.txt', 'utf-8');
+var strings = parseFASTA(data);
+var s = strings[0].data;
 
-  /** Throw away "introns" **/
-  for(var i = 1; i < strings.length; i++) {
-    s = s.replace(strings[i].data, '');
+/** Throw away "introns" **/
+for(var i = 1; i < strings.length; i++) {
+  s = s.replace(strings[i].data, '');
+}
+
+var mRNA = s.replace(/T/g, 'U');
+
+var proteinString = '';
+
+for(var i = 0; i < mRNA.length; i += 3) {
+  var protein = rnaCodonTable[mRNA.slice(i, i + 3)]; 
+  if(protein === 'Stop') {
+    break;
   }
+  proteinString += protein;
+}
 
-  var mRNA = s.replace(/T/g, 'U');
+console.log(proteinString);
+timing.printInfo();
 
-  var proteinString = '';
-
-  for(var i = 0; i < mRNA.length; i += 3) {
-    var protein = rnaCodonTable[mRNA.slice(i, i + 3)]; 
-    if(protein === 'Stop') {
-      break;
-    }
-    proteinString += protein;
-  }
-
-  console.log(proteinString);
-});

@@ -11,9 +11,10 @@
  * Terms:
  */
 
+var timing = require('../util/timing');
 var fs = require('fs');
 var bignum = require('bignum');
-var rnaCodonTable = require('./util/rnaCodonTable');
+var rnaCodonTable = require('../util/rnaCodonTable');
 
 var rnaCodonTableReverse = {};
 for(var codon in rnaCodonTable) {
@@ -22,16 +23,16 @@ for(var codon in rnaCodonTable) {
   rnaCodonTableReverse[protein].push(codon);
 }
 
-fs.readFile('test.txt', 'utf-8', function(data, proteinString) {
-  proteinString = proteinString.trim();
-  var sum = bignum('1');
+var proteinString = fs.readFileSync('../datasets/rosalind_mrna.txt', 'utf-8');
+proteinString = proteinString.trim();
+var sum = bignum('1');
 
-  for(var i = 0; i < proteinString.length; i++) {
-    sum = sum.mul(rnaCodonTableReverse[proteinString[i]].length);
-  }
+for(var i = 0; i < proteinString.length; i++) {
+  sum = sum.mul(rnaCodonTableReverse[proteinString[i]].length);
+}
 
-  sum = sum.mul(rnaCodonTableReverse['Stop'].length);
-  sum = sum.mod(1000000);
+sum = sum.mul(rnaCodonTableReverse['Stop'].length);
+sum = sum.mod(1000000);
 
-  console.log(sum.toString());
-});
+console.log(sum.toString());
+timing.printInfo();

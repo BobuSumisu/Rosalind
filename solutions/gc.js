@@ -14,6 +14,7 @@
  *
  */
 
+var timing = require('../util/timing');
 var fs = require('fs');
 
 function parseFASTA(data) {
@@ -33,14 +34,14 @@ function gcContent(stringData) {
   return (stringData.replace(/[^GC]/g, '').length / stringData.length) * 100;
 }
 
-fs.readFile('test.txt', 'utf-8', function(err, data) {
-  var strings = parseFASTA(data);
-  var highestGC = strings[0];
-  strings.forEach(function(string) {
-    string.gcContent = gcContent(string.data);
-    if(string.gcContent > highestGC.gcContent) {
-      highestGC = string;
-    }
-  });
-  console.log(highestGC.name + '\n' + highestGC.gcContent);
+var data = fs.readFileSync('../datasets/rosalind_gc.txt', 'utf-8');
+var strings = parseFASTA(data);
+var highestGC = strings[0];
+strings.forEach(function(string) {
+  string.gcContent = gcContent(string.data);
+  if(string.gcContent > highestGC.gcContent) {
+    highestGC = string;
+  }
 });
+console.log(highestGC.name + '\n' + highestGC.gcContent);
+timing.printInfo();

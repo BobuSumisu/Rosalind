@@ -18,26 +18,27 @@
  *  Reverse complement - The DNA string formed by reversing and complementing each symbol.
  */
 
+var timing = require('../util/timing');
 var fs = require('fs');
 
-fs.readFile('rosalind_revc.txt', 'utf-8', function(err, dnaString) {
-  var reverseComplement = '';   
-  var i = dnaString.length;
-  while(i--) {
-    switch(dnaString[i]) {
-      case 'A': 
-        reverseComplement += 'T';
-        break;
-      case 'T':
-        reverseComplement += 'A';
-        break;
-      case 'C':
-        reverseComplement += 'G';
-        break;
-      case 'G':
-        reverseComplement += 'C';
-        break;
-    }
+var dnaString = fs.readFileSync('../datasets/rosalind_revc.txt', 'utf-8');
+var reverseComplement = '';   
+var i = dnaString.length;
+while(i--) {
+  switch(dnaString[i]) {
+    case 'A': 
+      reverseComplement += 'T';
+      break;
+    case 'T':
+      reverseComplement += 'A';
+      break;
+    case 'C':
+      reverseComplement += 'G';
+      break;
+    case 'G':
+      reverseComplement += 'C';
+      break;
   }
-  console.log(reverseComplement);
-});
+}
+console.log(reverseComplement);
+timing.printInfo();

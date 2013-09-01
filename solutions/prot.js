@@ -30,20 +30,20 @@
  *  RNA codon table - A table indicating the translation of individual RNA codons into amino acids for the purpose of protein creation.
  */
 
+var timing = require('../util/timing');
 var fs = require('fs');
 
-var rnaCodonTable = require('./util/rnaCodonTable');
+var rnaCodonTable = require('../util/rnaCodonTable');
 
-fs.readFile('test.txt', 'utf-8', function(data, rnaString) {
-  var proteinString = '';
-  for(var i = 0; i < rnaString.length; i += 3) {
-    var protein = rnaCodonTable[rnaString.slice(i, i + 3)];
-    if(protein === 'Stop') {
-      break;
-    }
-    proteinString += protein;
+var rnaString = fs.readFileSync('../datasets/rosalind_prot.txt', 'utf-8');
+var proteinString = '';
+for(var i = 0; i < rnaString.length; i += 3) {
+  var protein = rnaCodonTable[rnaString.slice(i, i + 3)];
+  if(protein === 'Stop') {
+    break;
   }
-  console.log(proteinString);
-});
-
+  proteinString += protein;
+}
+console.log(proteinString);
+timing.printInfo();
 

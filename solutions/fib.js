@@ -16,6 +16,7 @@
  *
  */
 
+var timing = require('../util/timing');
 var fs = require('fs');
 var bignum = require('bignum');
 
@@ -41,9 +42,9 @@ for(var i = 0; i < 20; i++) {
 }
 */
 
-fs.readFile('test.txt', 'utf-8', function(err, data) {
-  var months = data.split(' ')[0];
-  var pairsProduced = data.split(' ')[1];
-  console.log(rabbitPairs(months, pairsProduced));
-});
+var data = fs.readFileSync('../datasets/rosalind_fib.txt', 'utf-8');
+var months = data.split(' ')[0];
+var pairsProduced = data.split(' ')[1];
+console.log(rabbitPairs(months, pairsProduced));
+timing.printInfo();
 

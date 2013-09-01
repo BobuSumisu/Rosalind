@@ -16,8 +16,9 @@
  * RNA transcription - The process by which DNA is converted into RNA.
  */
 
+var timing = require('../util/timing');
 var fs = require('fs');
 
-fs.readFile('rosalind_rna.txt', 'utf-8', function(err, dnaString) {
-  console.log(dnaString.replace(/T/g, 'U'));
-});
+var dnaString = fs.readFileSync('../datasets/rosalind_rna.txt', 'utf-8');
+console.log(dnaString.replace(/T/g, 'U'));
+timing.printInfo();

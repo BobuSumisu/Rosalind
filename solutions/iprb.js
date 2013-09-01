@@ -26,46 +26,46 @@
  *  
  */
 
+var timing = require('../util/timing');
 var fs = require('fs');
 var clone = require('clone');
 
-fs.readFile('test.txt', 'utf-8', function(err, data) {
-  var outcomes = ['k', 'm', 'n'];
-  var dataSplitted = data.split(' ');
+var data = fs.readFileSync('../datasets/rosalind_iprb.txt', 'utf-8');
+var outcomes = ['k', 'm', 'n'];
+var dataSplitted = data.split(' ');
 
-  var population = {
-    k: parseInt(dataSplitted[0]),
-    m: parseInt(dataSplitted[1]),
-    n: parseInt(dataSplitted[2]),
-    size: function() {
-      return this.k + this.m + this.n;
-    },
-    outcomeProb: function(outcome) {
-      return this[outcome] / this.size();
-    },
-    eventProb: function(oc1, oc2) {
-      var prob = this.outcomeProb(oc1);
-      this[oc1] -= 1;
-      prob *= this.outcomeProb(oc2);
-      return prob;
-    }
-  };
+var population = {
+  k: parseInt(dataSplitted[0]),
+  m: parseInt(dataSplitted[1]),
+  n: parseInt(dataSplitted[2]),
+  size: function() {
+    return this.k + this.m + this.n;
+  },
+  outcomeProb: function(outcome) {
+    return this[outcome] / this.size();
+  },
+  eventProb: function(oc1, oc2) {
+    var prob = this.outcomeProb(oc1);
+    this[oc1] -= 1;
+    prob *= this.outcomeProb(oc2);
+    return prob;
+  }
+};
 
-  var punnett = {
-    k: { k: 1.0, m: 1.0, n: 1.0 },
-    m: { k: 1.0, m: 0.75, n: 0.5 },
-    n: { k: 1.0, m: 0.5, n: 0.0 }
-  };
+var punnett = {
+  k: { k: 1.0, m: 1.0, n: 1.0 },
+  m: { k: 1.0, m: 0.75, n: 0.5 },
+  n: { k: 1.0, m: 0.5, n: 0.0 }
+};
 
-  var sum = 0;
+var sum = 0;
 
-  outcomes.forEach(function(i) {
-    outcomes.forEach(function(j) {
-      var pop = clone(population);
-      sum += pop.eventProb(i, j) * punnett[i][j];
-    });
+outcomes.forEach(function(i) {
+  outcomes.forEach(function(j) {
+    var pop = clone(population);
+    sum += pop.eventProb(i, j) * punnett[i][j];
   });
-
-  console.log(sum);
 });
 
+console.log(sum);
+timing.printInfo();

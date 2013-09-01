@@ -9,6 +9,7 @@
  *  Return - The total number of pairs of rabbits that will remain after the n-th month if all rabbits live for m months.
  */
 
+var timing = require('../util/timing');
 var fs = require('fs');
 var bignum = require('bignum');
 
@@ -42,8 +43,8 @@ for(var i = 0; i < 20; i++) {
 }
 */
 
-fs.readFile('test.txt', 'utf-8', function(err, data) {
-  var months = data.split(' ')[0];
-  var lifespan = data.split(' ')[1];
-  console.log(mortalRabbitPairs(months, lifespan));
-});
+var data = fs.readFileSync('../datasets/rosalind_fibd.txt', 'utf-8');
+var months = data.split(' ')[0];
+var lifespan = data.split(' ')[1];
+console.log(mortalRabbitPairs(months, lifespan));
+timing.printInfo();

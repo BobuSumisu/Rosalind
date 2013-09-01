@@ -13,6 +13,8 @@
  *  Synteny blocks - A region of DNA that is condensed into a single unit for genome comparison.
  *  Permutation - A permutation of length n is an ordering of the first n positive integers.
  */
+
+var timing = require('../util/timing');
 var fs = require('fs');
 
 function fac(n) {
@@ -70,12 +72,12 @@ function permutations(n) {
   return perms;
 }
 
-fs.readFile('test.txt', 'utf-8', function(err, data) {
-  var n = parseInt(data);
-  var numPermutations = fac(n);
-  var perms = permutations(n);
-  console.log(numPermutations);
-  perms.forEach(function(perm) {
-    console.log(perm.join(' '));
-  });
+var data = fs.readFileSync('../datasets/rosalind_perm.txt', 'utf-8');
+var n = parseInt(data);
+var numPermutations = fac(n);
+var perms = permutations(n);
+console.log(numPermutations);
+perms.forEach(function(perm) {
+  console.log(perm.join(' '));
 });
+timing.printInfo();

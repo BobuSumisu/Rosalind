@@ -12,6 +12,7 @@
  *  Partial permutation - An ordering of some of the objects from a collection.
  */
 
+var timing = require('../util/timing');
 var fs = require('fs');
 var bignum = require('bignum');
 
@@ -32,9 +33,9 @@ function P(n, k) {
   return fac(n).div(fac(n - k));
 }
 
-fs.readFile('test.txt', 'utf-8', function(err, data) {
-  var n = parseInt(data.split(' ')[0]);
-  var k = parseInt(data.split(' ')[1]);
+var data = fs.readFileSync('../datasets/rosalind_pper.txt', 'utf-8');
+var n = parseInt(data.split(' ')[0]);
+var k = parseInt(data.split(' ')[1]);
 
-  console.log(P(n, k).mod(1000000).toString());
-});
+console.log(P(n, k).mod(1000000).toString());
+timing.printInfo();
