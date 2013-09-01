@@ -4,9 +4,7 @@
 
 ## Status
 
-* Level: `2<sup>4</sup>`
-* Solved: `19 / 128`
-* Total: `0.15`
+`19 / 128`
 
 ## Why JavaScript?
 
