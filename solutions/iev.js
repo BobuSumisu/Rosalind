@@ -23,21 +23,22 @@ var timing = require('../util/timing');
 var fs = require('fs');
 
 var data = fs.readFileSync('../datasets/rosalind_iev.txt', 'utf-8');
-var dataSet = data.trim().split(' ');
+data = data.trim().split(' ').map(function(x) { return parseInt(x); });
 
-var expectedOutcomes = [
-  (2 + 2) / 2,
-  (2 + 2) / 2,
-  (2 + 2) / 2,
-  (1 + 2) / 2,
-  (1 + 1) / 2,
-  (0 + 0) / 2
-];
+/**
+ * Expected outcomes:
+ *  1: 2
+ *  2: 2
+ *  3: 2
+ *  4: 1.5
+ *  5: 1
+ *  6: 0
+ */
 
-var totalExpectedOutcomes = 0;
-dataSet.forEach(function(x, i) {
-  totalExpectedOutcomes += (expectedOutcomes[i] * x);
-});
+var E = 2.0 * (data[0] + data[1] + data[2])  +
+        1.5 * data[3] +
+        1.0 * data[4];
 
-console.log(totalExpectedOutcomes);
+console.log(E);
+
 timing.printInfo();
