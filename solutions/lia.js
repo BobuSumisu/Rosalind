@@ -25,6 +25,14 @@ var successes = parseInt(data.split(' ')[1]);
 var population = Math.pow(2, generation);
 var failures = population - successes;
 
+/**
+ * Pr(obtaining an AaBb offspring) = 0.25
+ * Pr(successes >= k) == Pr(failures <= (trials - k))
+ * Use binomial CDF with 
+ *  trials = population
+ *  successes = failures
+ *  probability = 1 - 0.25
+ */
 console.log(discrete.binomCDF(failures, population, 0.75));
 
 timing.printInfo();

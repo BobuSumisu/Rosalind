@@ -11,5 +11,6 @@ Because Python is so 1999. And I wanted to learn more about "vanilla" JavaScript
 * [node-bignum](https://github.com/justmoon/node-bignum) for those extra large numbers.
 * [node-clone](https://github.com/pvorb/node-clone) for (deep) cloning of object.
 * [node-graphviz](https://github.com/glejeune/node-graphviz) for sexy graphs.
+* [request](https://github.com/mikeal/request) for super simple HTTP requests.
 
 
