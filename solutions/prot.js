@@ -31,14 +31,13 @@
  */
 
 var timing = require('../util/timing');
+var bio = require('../util/bio');
 var fs = require('fs');
-
-var rnaCodonTable = require('../util/rnaCodonTable');
 
 var rnaString = fs.readFileSync('../datasets/rosalind_prot.txt', 'utf-8');
 var proteinString = '';
 for(var i = 0; i < rnaString.length; i += 3) {
-  var protein = rnaCodonTable[rnaString.slice(i, i + 3)];
+  var protein = bio.rnaCodonTable[rnaString.slice(i, i + 3)];
   if(protein === 'Stop') {
     break;
   }

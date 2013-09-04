@@ -21,12 +21,11 @@
  */
 
 var timing = require('../util/timing');
+var bio = require('../util/bio');
 var fs = require('fs');
-var parseFASTA = require('../util/parseFASTA');
-var rnaCodonTable = require('../util/rnaCodonTable');
 
 var data = fs.readFileSync('../datasets/rosalind_splc.txt', 'utf-8');
-var strings = parseFASTA(data);
+var strings = bio.parseFASTA(data);
 var s = strings[0].data;
 
 /** Throw away "introns" **/
@@ -39,7 +38,7 @@ var mRNA = s.replace(/T/g, 'U');
 var proteinString = '';
 
 for(var i = 0; i < mRNA.length; i += 3) {
-  var protein = rnaCodonTable[mRNA.slice(i, i + 3)]; 
+  var protein = bio.rnaCodonTable[mRNA.slice(i, i + 3)]; 
   if(protein === 'Stop') {
     break;
   }

@@ -14,11 +14,11 @@
  */
 
 var timing = require('../util/timing');
+var bio = require('../util/bio');
 var fs = require('fs');
-var parseFASTA = require('../util/parseFASTA');
 
 var data = fs.readFileSync('../datasets/rosalind_lcsm.txt', 'utf-8');
-var strings = parseFASTA(data).map(function(x) { return x.data; });
+var strings = bio.parseFASTA(data).map(function(x) { return x.data; });
 
 /** Sort by length (asc). **/
 strings = strings.sort(function(a, b) {

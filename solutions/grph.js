@@ -32,12 +32,12 @@
  */
 
 var timing = require('../util/timing');
+var bio = require('../util/bio');
 var fs = require('fs');
 var graphviz = require('graphviz');
-var parseFASTA = require('../util/parseFASTA');
 
 var data = fs.readFileSync('../datasets/rosalind_grph.txt', 'utf-8');
-var nodes = parseFASTA(data);
+var nodes = bio.parseFASTA(data);
 var edges = [];
 var k = 3;
 

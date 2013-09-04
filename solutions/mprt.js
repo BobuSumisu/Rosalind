@@ -17,7 +17,7 @@
  */
 
 var timing = require('../util/timing');
-var parseFASTA = require('../util/parseFASTA');
+var bio = require('../util/bio');
 var fs = require('fs');
 var request = require('request');
 var async = require('async');
@@ -27,7 +27,7 @@ var proteinStrings = [];
 
 async.eachSeries(data.trim().split('\n'), function(uniprotId, callback) {
   request('http://uniprot.org/uniprot/' + uniprotId.trim() + '.fasta', function(err, response, body) {
-    var proteinString = parseFASTA(body)[0];
+    var proteinString = bio.parseFASTA(body)[0];
     proteinString.uniprotId = uniprotId;
     proteinStrings.push(proteinString);
     console.log(uniprotId + ' downloaded and parsed.');

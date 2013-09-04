@@ -18,8 +18,9 @@
  */
 
 var timing = require('../util/timing');
+var bio = require('../util/bio');
+
 var fs = require('fs');
-var parseFASTA = require('../util/parseFASTA');
 
 function R(s1, s2) {
   var transitions = 0;
@@ -51,6 +52,6 @@ function R(s1, s2) {
 }
 
 var data = fs.readFileSync('../datasets/rosalind_tran.txt', 'utf-8');
-var strings = parseFASTA(data);
+var strings = bio.parseFASTA(data);
 console.log(R(strings[0].data, strings[1].data));
 timing.printInfo();

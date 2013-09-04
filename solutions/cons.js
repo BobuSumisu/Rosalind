@@ -15,11 +15,11 @@
  */
 
 var timing = require('../util/timing');
+var bio = require('../util/bio');
 var fs = require('fs');
-var parseFASTA = require('../util/parseFASTA');
 
 var data = fs.readFileSync('../datasets/rosalind_cons.txt', 'utf-8');
-var dnaStrings = parseFASTA(data);
+var dnaStrings = bio.parseFASTA(data);
 var length = dnaStrings[0].data.length;
 var matrix = [];
 

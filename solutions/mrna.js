@@ -12,13 +12,13 @@
  */
 
 var timing = require('../util/timing');
+var bio = require('../util/bio');
 var fs = require('fs');
 var bignum = require('bignum');
-var rnaCodonTable = require('../util/rnaCodonTable');
 
 var rnaCodonTableReverse = {};
-for(var codon in rnaCodonTable) {
-  var protein = rnaCodonTable[codon];
+for(var codon in bio.rnaCodonTable) {
+  var protein = bio.rnaCodonTable[codon];
   rnaCodonTableReverse[protein] = rnaCodonTableReverse[protein] || [];
   rnaCodonTableReverse[protein].push(codon);
 }

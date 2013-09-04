@@ -1,8 +1,9 @@
+
 /**
- * Rosalind Problem - 
+ * Rosalind Problem - Open Reading Frames
  * by Øyvind Ingvaldsen <oyvind.ingvaldsen@gmail.com>
  *
- * http://rosalind.info/problems//
+ * http://rosalind.info/problems/orf/
  *
  * Problem:
  *  Given - 
@@ -13,10 +14,9 @@
 
 var timing = require('../util/timing');
 var bio = require('../util/bio');
-var discrete = require('../util/discrete');
-
 var fs = require('fs');
 
-var data = fs.readFileSync('../datasets/rosalind_.txt', 'utf-8');
+var data = fs.readFileSync('../datasets/rosalind_orf.txt', 'utf-8');
+var dnaString = bio.parseFASTA(data)[0];
 
 timing.printInfo();

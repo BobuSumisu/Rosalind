@@ -15,27 +15,15 @@
  */
 
 var timing = require('../util/timing');
+var bio = require('../util/bio');
 var fs = require('fs');
-
-function parseFASTA(data) {
-  var strings = [];
-  data.split('\n').forEach(function(line) {
-    if(line[0] === '>') {
-      strings.push({ name: line.slice(1), data: '' });
-    }
-    else {
-      strings[strings.length - 1].data += line;
-    }
-  });
-  return strings;
-}
 
 function gcContent(stringData) {
   return (stringData.replace(/[^GC]/g, '').length / stringData.length) * 100;
 }
 
 var data = fs.readFileSync('../datasets/rosalind_gc.txt', 'utf-8');
-var strings = parseFASTA(data);
+var strings = bio.parseFASTA(data);
 var highestGC = strings[0];
 strings.forEach(function(string) {
   string.gcContent = gcContent(string.data);
