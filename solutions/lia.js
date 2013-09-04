@@ -4,7 +4,6 @@
  *
  * http://rosalind.info/problems/lia/
  *
- * [IN PROGRESS]
  *
  * Problem:
  *  Given - Two positive integers k <= 7 and N <= 2^k. In this problem, we begin with Tom, who in the 0th generation has genotype Aa Bb. Tom has two children in the 1st generation, each of whom has two children, and so on. Each organism always mates with an organism having genotype Aa Bb.
@@ -18,31 +17,14 @@
 
 var timing = require('../util/timing');
 var fs = require('fs');
+var discrete = require('../util/discrete');
 
 var data = fs.readFileSync('../datasets/rosalind_lia.txt', 'utf-8');
-var k = parseInt(data.split(' ')[0]);
-var n = parseInt(data.split(' ')[1]);
-var N = Math.pow(2, k);
+var generation = parseInt(data.split(' ')[0]);
+var successes = parseInt(data.split(' ')[1]);
+var population = Math.pow(2, generation);
+var failures = population - successes;
 
-var _facTable = [1, 1];
-function fac(n) {
-  if(_facTable[n]) {
-    return _facTable[n];
-  }
-  else {
-    _facTable[n] = fac(n - 1) * n;
-    return _facTable[n];
-  }
-}
-
-function binomCoef(n, k) {
-  return fac(n) / (fac(k) * fac(n - k));
-}
-
-function binomPdf(n, p, r) {
-  return binomCoef(n, r) * Math.pow(p, r) * Math.pow(1 - p, n - r);
-}
-
-/** Some binomial distribution function here? **/
+console.log(discrete.binomCDF(failures, population, 0.75));
 
 timing.printInfo();
