@@ -12,5 +12,5 @@ Because Python is so 1999. And I wanted to learn more about "vanilla" JavaScript
 * [node-clone](https://github.com/pvorb/node-clone) for (deep) cloning of object.
 * [node-graphviz](https://github.com/glejeune/node-graphviz) for sexy graphs.
 * [request](https://github.com/mikeal/request) for super simple HTTP requests.
-
+* [async](https://github.com/caolan/async) for handling those simple HTTP requests (and much more).
 
