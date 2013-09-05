@@ -36,13 +36,12 @@
  */
 
 var timing = require('../util/timing');
+var bio = require('../util/bio');
 var fs = require('fs');
 
 var dnaString = fs.readFileSync('../datasets/rosalind_dna.txt', 'utf-8');
-var adenineCount = dnaString.match(/A/g).length;
-var cytosineCount = dnaString.match(/C/g).length;
-var guanineCount = dnaString.match(/G/g).length;
-var thymineCount = dnaString.match(/T/g).length;
-console.log(adenineCount + ' ' + cytosineCount + ' ' + guanineCount + ' ' + thymineCount);  
+var dna = new bio.DNA(dnaString);
+var baseCount = dna.baseCount();
+console.log('%d %d %d %d', baseCount.A, baseCount.C, baseCount.G, baseCount.T);
 
 timing.printInfo();

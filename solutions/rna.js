@@ -17,8 +17,10 @@
  */
 
 var timing = require('../util/timing');
+var bio = require('../util/bio');
 var fs = require('fs');
 
 var dnaString = fs.readFileSync('../datasets/rosalind_rna.txt', 'utf-8');
-console.log(dnaString.replace(/T/g, 'U'));
+var dna = new bio.DNA(dnaString);
+console.log(dna.toRNA().toString());
 timing.printInfo();

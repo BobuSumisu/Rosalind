@@ -1,5 +1,7 @@
 'use strict';
 
+var RNA = require('./RNA');
+
 function DNA(dnaString) {
   this._string = dnaString;
 }
@@ -24,6 +26,15 @@ DNA.prototype.bp = function() {
 DNA.prototype.kbp = function() {
   return this.bp() / 1000;
 }
+
+DNA.prototype.baseCount = function() {
+  return {
+    'A': this._string.match(/A/g).length,
+    'T': this._string.match(/T/g).length,
+    'C': this._string.match(/C/g).length,
+    'G': this._string.match(/G/g).length
+  };
+};
 
 DNA.prototype.reverseComplement = function() {
   var i = this.bp();
@@ -89,6 +100,10 @@ DNA.prototype.codons = function(offset) {
     codons.push(this._string.slice(i, i + 3));
   }
   return codons;
+};
+
+DNA.prototype.toRNA = function() {
+  return new RNA(this._string.replace(/T/g, 'U'));
 };
 
 DNA.prototype.toProtein = function() {
