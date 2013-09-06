@@ -1,20 +1,18 @@
 'use strict';
 
-exports.DNA = require('./DNA');
-exports.RNA = require('./RNA');
+var DNAString = exports.DNAString = require('./dna-string');
+var RNAString = exports.RNAString = require('./rna-string');
+var ProteinString = exports.ProteinString = require('./protein-string');
 
 exports.parseFASTA = function(data) {
   var strings = [];
 
   data.split('\n').forEach(function(line) {
     if(line[0] === '>') {
-      strings.push({
-        name: line.slice(1),
-        data: ''
-      });
+      strings.push(new DNAString('', line.slice(1)));
     }
     else {
-      strings[strings.length - 1].data += line;
+      strings[strings.length - 1]._string += line.trim();
     }
   });
 
